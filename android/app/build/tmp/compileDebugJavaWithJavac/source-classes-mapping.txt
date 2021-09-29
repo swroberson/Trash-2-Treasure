@@ -1,0 +1,14 @@
+com/cen3031team8/MainActivity.java
+ com.cen3031team8.MainActivity
+com/cen3031team8/MainApplication.java
+ com.cen3031team8.MainApplication
+ com.cen3031team8.MainApplication$1
+com/cen3031team8/ReactNativeFlipper.java
+ com.cen3031team8.ReactNativeFlipper
+ com.cen3031team8.ReactNativeFlipper$1
+ com.cen3031team8.ReactNativeFlipper$2
+ com.cen3031team8.ReactNativeFlipper$2$1
+com/cen3031team8/BuildConfig.java
+ com.cen3031team8.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
