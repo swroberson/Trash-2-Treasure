@@ -1,0 +1,6 @@
+module Pods_CEN3031Team8_CEN3031Team8Tests {
+  umbrella header "Pods-CEN3031Team8-CEN3031Team8Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
