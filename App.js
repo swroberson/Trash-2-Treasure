@@ -1,34 +1,89 @@
-import React from "react";
-import { Button, Text, TextInput, View, StyleSheet } from "react-native";
+import React, { Component } from "react";
+import { Button, Text, TextInput, View, StyleSheet, SafeAreaView } from "react-native";
 
 const App = () => {
-  const [message, setMessage] = React.useState();
+  const [message1, setMessage1] = React.useState();
+  const [message2, setMessage2] = React.useState();
+  const [message3, setMessage3] = React.useState();
 
   return (
-    <View>
-      <Button
-        title="Say Hello"
-        onPress={() => {
-          setTimeout(() => {
-            setMessage("Hello Tester");
-          }, Math.floor(Math.random() * 200));
-        }}
-      />
-      {message && (
-        <Text style={styles.messageText} testID="printed-message">
-          {message}
+    <SafeAreaView>  
+      <View style ={[styles.container, {
+      flexDirection: "row",
+      justifyContent: "center"
+      }]}>
+      
+        <Button
+          title="Run Test 1"
+          onPress={() => {
+            setTimeout(() => {
+              setMessage1("1");
+            }, Math.floor(Math.random() * 200));
+          }}
+        />
+
+        <Button
+          title="Run Test 2"
+          onPress={() => {
+            setTimeout(() => {
+              setMessage2("2");
+            }, Math.floor(Math.random() * 200));
+          }}
+        />
+
+        <Button
+          title="Run Test 3"
+          onPress={() => {
+            setTimeout(() => {
+              setMessage3("3");
+            }, Math.floor(Math.random() * 200));
+          }}
+        />
+      </View>
+
+      <View>
+      {message1 && (
+          <Text style={styles.messageText1} testID="printed-message1">
+            {message1}
+          </Text>
+        )}
+        
+      {message2 && (
+        <Text style={styles.messageText2} testID="printed-message2">
+          {message2}
         </Text>
       )}
-    </View>
+
+      {message3 && (
+          <Text style={styles.messageText3} testID="printed-message3">
+            {message3}
+          </Text>
+      )}
+      </View>
+    </SafeAreaView>  
   );
 };
 
 const styles = StyleSheet.create({
-  messageText: {
+  messageText1: {
     fontFamily: "Arial",
     fontSize: 38,
     textAlign: "center",
-    marginTop: 10
+    marginTop: 20
+  },
+
+  messageText2: {
+    fontFamily: "Arial",
+    fontSize: 38,
+    textAlign: "center",
+    marginTop: 20
+  },
+  
+  messageText3: {
+    fontFamily: "Arial",
+    fontSize: 38,
+    textAlign: "center",
+    marginTop: 20
   }
 });
 
