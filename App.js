@@ -1,14 +1,49 @@
-import React, { Component } from "react";
+import { staticBlock } from "@babel/types";
+//import React, { Component } from "react";
 import { Button, Text, TextInput, View, StyleSheet, SafeAreaView } from "react-native";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
+  return (
+      <NavigationContainer> 
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ title: 'Home' }}
+          />
+          <Stack.Screen
+            name="Test"
+            component={TestScreen}
+            options={{ title: 'Test'}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+  );
+};
+
+const HomeScreen = ({navigation}) => {
+  return (
+    <Button
+      title = "Home"
+      onPress={() =>
+        navigation.navigate('Test')}
+    />
+  );
+};
+
+const TestScreen = ({navigation}) => {
   const [message1, setMessage1] = React.useState();
   const [message2, setMessage2] = React.useState();
   const [message3, setMessage3] = React.useState();
 
   return (
-    <SafeAreaView>  
-      <View style ={[styles.container, {
+    <SafeAreaView> 
+    <View style ={[styles.container, {
       flexDirection: "row",
       justifyContent: "center"
       }]}>
@@ -60,7 +95,7 @@ const App = () => {
           </Text>
       )}
       </View>
-    </SafeAreaView>  
+      </SafeAreaView>
   );
 };
 
