@@ -19,7 +19,7 @@ const App = () => {
           <Stack.Screen
             name="Test"
             component={TestScreen}
-            options={{ title: 'Test'}}
+            options={{ title: 'Tests'}}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -28,11 +28,13 @@ const App = () => {
 
 const HomeScreen = ({navigation}) => {
   return (
+    <SafeAreaView> 
     <Button
-      title = "Home"
+      title = "Go To Tests"
       onPress={() =>
         navigation.navigate('Test')}
     />
+    </SafeAreaView> 
   );
 };
 
