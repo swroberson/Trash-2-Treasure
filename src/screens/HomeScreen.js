@@ -21,7 +21,7 @@ const HomeScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
     btn: {
-        top: '50%',
+        top: '300%',
         right: '1%'
     },
     img: {
