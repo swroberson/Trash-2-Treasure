@@ -1,7 +1,7 @@
 import React from 'react';
-import { Dimensions } from 'react-native';
-import { Text, SafeAreaView, StyleSheet, View } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Button, Text, SafeAreaView, StyleSheet, View } from "react-native";
+import { Dimensions } from 'react-native';
 
 Icon.loadFont();
 
@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
     },
     txt: {
       alignItems: 'center'
+    },
+    btn: {
+      paddingTop: Dimensions.get('window').height / 4
     }
 });
   export default HomeScreen;
