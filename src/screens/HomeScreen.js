@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import { Button, SafeAreaView, StyleSheet, View } from "react-native";
+import { Text, SafeAreaView, StyleSheet, View } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 
 Icon.loadFont();
@@ -22,12 +22,8 @@ const HomeScreen = ({navigation}) => {
             />
           </View>
         </View>
-        <View style={styles.btn}>
-          <Button
-            title = "Go To Tests"
-            onPress={() =>
-              navigation.navigate('Test')}
-          />
+        <View style={styles.txt}>
+          <Text>Home Screen</Text>
         </View>
       </SafeAreaView> 
     );
@@ -46,8 +42,8 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start',
       alignItems: 'flex-start'
     },
-    btn: {
-      paddingTop: Dimensions.get('window').height / 4
+    txt: {
+      alignItems: 'center'
     }
 });
   export default HomeScreen;

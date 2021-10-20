@@ -6,7 +6,6 @@ import MapOrLeaderboardScreen from '../screens/MapOrLeaderboardScreen'
 import MapScreen from '../screens/MapScreen';
 import LeaderboardScreen from '../screens/LeaderboardScreen';
 import UserScreen from '../screens/UserScreen';
-import TestScreen from '../screens/TestScreen'
 
 const Stack = createNativeStackNavigator();
 
@@ -39,11 +38,6 @@ const StackNavigation = () => {
                 name="UserScreen"
                 component={UserScreen}
                 options={{ title: 'View Profile'}}
-            />
-            <Stack.Screen
-                name="Test"
-                component={TestScreen}
-                options={{ title: 'Tests'}}
             />
         </Stack.Navigator>
     )
