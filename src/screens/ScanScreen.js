@@ -1,11 +1,11 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import { Button, SafeAreaView, StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 
 Icon.loadFont();
 
-const HomeScreen = ({navigation}) => {
+const ScanScreen = ({navigation}) => {
     return (
       <SafeAreaView> 
         <View style={{flexDirection:"row", justifyContent: 'space-between'}}>
@@ -15,19 +15,9 @@ const HomeScreen = ({navigation}) => {
               size={50}
             />
           </View>
-          <View style={styles.menu}>
-            <Icon name="menu-outline"
-              onPress={() => navigation.navigate('MapOrLeaderboardScreen')}
-              size={50}
-            />
-          </View>
         </View>
         <View style={styles.btn}>
-          <Button
-            title = "Go To Tests"
-            onPress={() =>
-              navigation.navigate('Test')}
-          />
+          <Text>Scan Barcodes</Text>
         </View>
       </SafeAreaView> 
     );
@@ -47,7 +37,8 @@ const styles = StyleSheet.create({
       alignItems: 'flex-start'
     },
     btn: {
-      paddingTop: Dimensions.get('window').height / 4
+      paddingTop: Dimensions.get('window').height / 4,
+      alignItems: 'center'
     }
 });
-  export default HomeScreen;
+  export default ScanScreen;

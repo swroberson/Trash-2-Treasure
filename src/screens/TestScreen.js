@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, View, SafeAreaView, Text, StyleSheet } from "react-native";
+import { Dimensions } from 'react-native';
 
-const TestScreen = () => {
+const TestScreen = ({navigation}) => {
     const [message1, setMessage1] = React.useState();
     const [message2, setMessage2] = React.useState();
     const [message3, setMessage3] = React.useState();
@@ -40,7 +41,7 @@ const TestScreen = () => {
             }}
           />
         </View>
-  
+
         <View>
         {message1 && (
             <Text style={styles.messageText1} testID="printed-message1">
@@ -59,6 +60,14 @@ const TestScreen = () => {
               {message3}
             </Text>
         )}
+        </View>
+
+        <View style={styles.btn}>
+          <Button
+            title = "Home"
+            onPress={() =>
+              navigation.navigate('Home')}
+          />
         </View>
         </SafeAreaView>
     );
@@ -84,6 +93,10 @@ const TestScreen = () => {
       fontSize: 38,
       textAlign: "center",
       marginTop: 20
+    },
+    btn: {
+      paddingTop: Dimensions.get('window').height / 6,
+      alignItems: 'center'
     }
   });
   
