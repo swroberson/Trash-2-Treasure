@@ -10,7 +10,7 @@ const UserScreen = ({navigation}) => {
       <SafeAreaView>
         <View style={styles.menu}>
             <Icon name="close-outline"
-              onPress={() => navigation.navigate('Home')}
+              onPress={() => navigation.navigate('HomeStack')}
               size={50}
             />
         </View>
@@ -31,11 +31,6 @@ const styles = StyleSheet.create({
     txt: {
       paddingTop: Dimensions.get('window').height / 4,
       alignItems: 'center'
-    },
-    img: {
-      width: Dimensions.get('window').width / 7.5,
-      height: Dimensions.get('window').width / 7.5,
-      resizeMode: 'contain'
     }
 });
   export default UserScreen;

@@ -16,7 +16,7 @@ const StackNavigation = () => {
     headerShown: false
   }}>
             <Stack.Screen
-                name="Home"
+                name="HomeStack"
                 component={TabNavigation}
                 options={{ title: 'Home' }}
             />

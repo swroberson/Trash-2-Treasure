@@ -31,11 +31,6 @@ const styles = StyleSheet.create({
     txt: {
       paddingTop: Dimensions.get('window').height / 4,
       alignItems: 'center'
-    },
-    img: {
-      width: Dimensions.get('window').width / 7.5,
-      height: Dimensions.get('window').width / 7.5,
-      resizeMode: 'contain'
     }
 });
   export default LeaderboardScreen;
