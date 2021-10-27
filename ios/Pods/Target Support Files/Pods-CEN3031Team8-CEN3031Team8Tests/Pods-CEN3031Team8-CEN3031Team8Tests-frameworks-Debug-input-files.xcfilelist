@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-CEN3031Team8-CEN3031Team8Tests/Pods-CEN3031Team8-CEN3031Team8Tests-frameworks.sh
+${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-DoubleConversion/double-conversion.framework/double-conversion
+${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL
