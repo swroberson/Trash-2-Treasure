@@ -1,7 +1,8 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Button, Text, SafeAreaView, StyleSheet, View } from "react-native";
+import { Button, Text, SafeAreaView, StyleSheet, View, Image } from "react-native";
 import { Dimensions } from 'react-native';
+import RecycleButton from '../components/RecycleButton';
 
 Icon.loadFont();
 
@@ -21,6 +22,9 @@ const HomeScreen = ({navigation}) => {
               size={50}
             />
           </View>
+        </View>
+        <View style={styles.recycleButton}>
+          <RecycleButton itemImage={require('../images/recycleButton.png')} />
         </View>
         <View style={styles.txt}>
           <Text>Home Screen</Text>
@@ -43,7 +47,8 @@ const styles = StyleSheet.create({
       alignItems: 'flex-start'
     },
     txt: {
-      alignItems: 'center'
+      alignItems: 'center',
+      bottom: '80%'
     },
     btn: {
       paddingTop: Dimensions.get('window').height / 4
