@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
+
 import { Text, SafeAreaView, StyleSheet, View, TextInput } from "react-native";
-import { Button, Overlay } from "react-native-elements/dist";
+import { Button, Overlay } from "react-native-elements";
 import { useAuth } from "../AuthProvider";
+
 import { Dimensions } from 'react-native';
+import RecycleButton from '../components/RecycleButton';
 
 Icon.loadFont();
 
@@ -84,6 +87,9 @@ const HomeScreen = ({navigation}) => {
             />
           </View>
         </View>
+        <View style={styles.recycleButton}>
+          <RecycleButton itemImage={require('../images/recycleButton.png')} />
+        </View>
         <View style={styles.txt}>
           <Text>Home Screen</Text>
         </View>
@@ -105,7 +111,8 @@ const styles = StyleSheet.create({
       alignItems: 'flex-start'
     },
     txt: {
-      alignItems: 'center'
+      alignItems: 'center',
+      bottom: '80%'
     },
     btn: {
       paddingTop: Dimensions.get('window').height / 4
