@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Text, SafeAreaView, StyleSheet, View, TextInput } from "react-native";
-import { Button, Overlay } from "react-native-elements";
+import { Button, Overlay } from "react-native-elements/dist";
 import { useAuth } from "../AuthProvider";
 import { Dimensions } from 'react-native';
 
