@@ -6,7 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest --forceExit",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "@react-navigation/native-stack": "^6.2.5",
     "react": "17.0.2",
     "react-native": "0.65.1",
+    "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-ionicons": "^4.6.5",
     "react-native-reanimated": "^2.2.3",
@@ -23,6 +24,7 @@
     "react-native-screens": "^3.8.0",
     "react-native-vector-icons": "^8.1.0",
     "react-navigation": "^4.4.4",
+    "realm": "^10.9.1",
     "scandir": "^0.1.2"
   },
   "devDependencies": {
@@ -48,7 +50,7 @@
       "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/fileMocks.js"
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!(@react-native|react-native|react-native-vector-icons)/)"
+      "node_modules/(?!(@react-native|react-native|react-native-vector-icons|react-native-elements|react-native-size-matters|react-native-ratings)/)"
     ]
   }
 }
