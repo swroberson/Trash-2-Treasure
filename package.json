@@ -19,6 +19,7 @@
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-ionicons": "^4.6.5",
+    "react-native-maps": "https://github.com/react-community/react-native-maps.git",
     "react-native-reanimated": "^2.2.3",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.8.0",
@@ -50,7 +51,7 @@
       "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/fileMocks.js"
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!(@react-native|react-native|react-native-vector-icons|react-native-elements|react-native-size-matters|react-native-ratings)/)"
+      "node_modules/(?!(@react-native|react-native|react-native-vector-icons|react-native-elements|react-native-size-matters|react-native-ratings|react-native-maps)/)"
     ]
   }
 }
