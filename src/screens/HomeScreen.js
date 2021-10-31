@@ -7,6 +7,7 @@ import { useAuth } from "../AuthProvider";
 
 import { Dimensions } from 'react-native';
 import RecycleButton from '../components/RecycleButton';
+import AndroidMap from '../components/AndroidMap';
 
 Icon.loadFont();
 
@@ -87,11 +88,13 @@ const HomeScreen = ({navigation}) => {
             />
           </View>
         </View>
+        <View style={styles.androidMap}>
+          <AndroidMap></AndroidMap>
+        </View>
         <View style={styles.recycleButton}>
           <RecycleButton itemImage={require('../images/recycleButton.png')} />
         </View>
         <View style={styles.txt}>
-          <Text>Home Screen</Text>
         </View>
       </SafeAreaView> 
     );
@@ -125,6 +128,6 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       padding: 10,
       borderRadius: 2,
-    }
+    },
 });
   export default HomeScreen;
