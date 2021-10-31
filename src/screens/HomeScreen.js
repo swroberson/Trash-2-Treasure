@@ -91,7 +91,7 @@ const HomeScreen = ({navigation}) => {
         <View style={styles.androidMap}>
           <AndroidMap></AndroidMap>
         </View>
-        <View style={styles.recycleButton}>
+        <View style={styles.recycler}>
           <RecycleButton itemImage={require('../images/recycleButton.png')} />
         </View>
         <View style={styles.txt}>
@@ -129,5 +129,8 @@ const styles = StyleSheet.create({
       padding: 10,
       borderRadius: 2,
     },
+    recycler: {
+      paddingTop: '85%',
+    }
 });
   export default HomeScreen;
