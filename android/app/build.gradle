@@ -131,6 +131,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        missingDimensionStrategy 'react-native-camera', 'general'
+
     }
     splits {
         abi {
@@ -218,3 +220,5 @@ apply from: file("../../node_modules/@react-native-community/cli-platform-androi
 
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+apply plugin: 'com.google.android.gms.strict-version-matcher-plugin'
