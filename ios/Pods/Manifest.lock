@@ -72,10 +72,31 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
+  - Google-Maps-iOS-Utils (2.1.0):
+    - Google-Maps-iOS-Utils/Clustering (= 2.1.0)
+    - Google-Maps-iOS-Utils/Geometry (= 2.1.0)
+    - Google-Maps-iOS-Utils/Heatmap (= 2.1.0)
+    - Google-Maps-iOS-Utils/QuadTree (= 2.1.0)
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Clustering (2.1.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Geometry (2.1.0):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Heatmap (2.1.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/QuadTree (2.1.0):
+    - GoogleMaps
   - GoogleDataTransport (9.1.2):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleMaps (3.5.0):
+    - GoogleMaps/Maps (= 3.5.0)
+  - GoogleMaps/Base (3.5.0)
+  - GoogleMaps/Maps (3.5.0):
+    - GoogleMaps/Base
   - GoogleMLKit/BarcodeScanning (2.4.0):
     - GoogleMLKit/MLKitCore
     - MLKitBarcodeScanning (~> 1.5.0)
@@ -339,6 +360,12 @@ PODS:
     - React-Core
   - react-native-camera/RN (4.2.1):
     - React-Core
+  - react-native-google-maps (0.29.3):
+    - Google-Maps-iOS-Utils (= 2.1.0)
+    - GoogleMaps (= 3.5.0)
+    - React-Core
+  - react-native-maps (0.29.3):
+    - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
   - React-perflogger (0.65.1)
@@ -486,6 +513,8 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-camera/BarcodeDetectorMLKit (from `../node_modules/react-native-camera`)
+  - react-native-google-maps (from `../node_modules/react-native-maps`)
+  - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -519,7 +548,9 @@ SPEC REPOS:
     - Flipper-RSocket
     - FlipperKit
     - fmt
+    - Google-Maps-iOS-Utils
     - GoogleDataTransport
+    - GoogleMaps
     - GoogleMLKit
     - GoogleToolboxForMac
     - GoogleUtilities
@@ -569,6 +600,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-camera:
     :path: "../node_modules/react-native-camera"
+  react-native-google-maps:
+    :path: "../node_modules/react-native-maps"
+  react-native-maps:
+    :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
@@ -623,7 +658,9 @@ SPEC CHECKSUMS:
   FlipperKit: aec2d931adeee48a07bab1ea8bcc8a6bb87dfce4
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 5337263514dd6f09803962437687240c5dc39aa4
+  Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
+  GoogleMaps: 32ca02de09de357a10ac773f2c70f1986751392d
   GoogleMLKit: db5007bddb78dedf52b60f4038d32e7bd006b519
   GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
   GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
@@ -650,6 +687,8 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 43f2542aed3c26e42175b339f8d37fe3dd683765
   React-jsinspector: 41e58e5b8e3e0bf061fdf725b03f2144014a8fb0
   react-native-camera: 3eae183c1d111103963f3dd913b65d01aef8110f
+  react-native-google-maps: d6a30377b40a338bd09d6ad36ce48dc5d12b5792
+  react-native-maps: 41d01d8e0afcebe32bec9eea3bd945adc1b18f7a
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
@@ -670,6 +709,6 @@ SPEC CHECKSUMS:
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 5e82efe06975385a1cbf358e2359e9db1c0df71c
+PODFILE CHECKSUM: 03ba271f1a175dd923d481592f2891a2778e7f1d
 
 COCOAPODS: 1.11.2

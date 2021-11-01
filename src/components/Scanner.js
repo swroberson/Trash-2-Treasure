@@ -1,36 +1,44 @@
-import React, { PureComponent } from 'react';
-import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import React, { PureComponent, useState, useEffect } from 'react';
+import { AppRegistry, StyleSheet, Text, View, Alert } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import BarcodeMask from 'react-native-barcode-mask';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default class Scanner extends PureComponent {
-  state = {
-    // your other states
-    barcodeType: '',
-    barcodeValue: '',
-    isBarcodeRead: false // default to false
- }
-  onBarcodeRead(event) {
-    this.setState({isBarcodeRead: true, barcodeType: event.type, barcodeValue: event.data});
-  }
-  componentDidUpdate() {
-    const {isBarcodeRead, barcodeType, barcodeValue} = this.state;
-    if (isBarcodeRead) {
-       Alert.alert(barcodeType, barcodeValue, [
-         { 
-             text: 'OK', 
-             onPress: () => {
-                 // Reset everything 
-                 this.setState({isBarcodeRead: false, barcodeType: '', barcodeValue: ''})
-             }
-         }
-       ]);
-    }
-  }
+const defaultBarcodeTypes = [ RNCamera.Constants.BarCodeType.ean13, RNCamera.Constants.BarCodeType.ean8, RNCamera.Constants.BarCodeType.upc_e ];
 
-  render() {
-    const {isBarcodeRead} = this.state;
+const Scanner = () => {
+  const [isBarcodeRead, setIsBarcodeRead] = useState(false);
+  const [barcodeType, setBarcodeType] = useState('');
+  const [barcodeData, setBarcodeData] = useState('');
+  
+  useEffect(() => {
+    if (isBarcodeRead) {
+      Alert.alert(
+        "You scanned", 
+        barcodeData, 
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+                // reset everything
+                setIsBarcodeRead(false);
+                setBarcodeType('');
+                setBarcodeData('');
+            }
+          }
+        ]
+      );
+    }
+  }, [isBarcodeRead, barcodeType, barcodeData]);
+  
+  const onBarcodeRead = e => {
+    if (!isBarcodeRead) {
+      setIsBarcodeRead(true),
+      setBarcodeType(e.type),
+      setBarcodeData(e.data)
+    }
+  };
+
     return (
       <View style={styles.container}>
         <RNCamera
@@ -47,82 +55,18 @@ export default class Scanner extends PureComponent {
             buttonPositive: 'Ok',
             buttonNegative: 'Cancel',
           }}
-          barcodeTypes={isBarcodeRead ? [] : this.barcodeType}
+          onBarCodeRead={onBarcodeRead}
+          barcodeTypes={isBarcodeRead ? [] : defaultBarcodeTypes}
         >
           <BarcodeMask 
-            width={300} 
-            height={300} 
+            width={200} 
+            height={200} 
             showAnimatedLine={false}
-            outerMaskOpacity={0.3} 
-            edgeColor={"#00529b"}
-            backgroundColor={"#bc581a"} 
+            outerMaskOpacity={0.25} 
           />
         </RNCamera>
       </View>
     );
-  }
-  
-
-  barcodeRecognized = ({ barcodes }) => this.setState({ barcodes });
-
-  renderBarcodes = () => (
-    <View>
-      { this.state.barcodes.map(this.renderBarcode) }
-    </View>
-  );
-
-  renderBarcodeAndroid = ({ bounds, data }) => (
-    <React.Fragment key={data + bounds.origin.x}>
-      <View
-        style={{
-          borderWidth: 2,
-          borderRadius: 10,
-          position: 'absolute',
-          borderColor: '#F00',
-          justifyContent: 'center',
-          backgroundColor: 'rgba(255, 255, 255, 0.9)',
-          padding: 10,
-          ...bounds.size,
-          left: bounds.origin.x,
-          top: bounds.origin.y,
-        }}
-      >
-        <Text style={{
-          color: '#F00',
-          flex: 1,
-          position: 'absolute',
-          textAlign: 'center',
-          backgroundColor: 'transparent',
-        }}>{data}</Text>
-      </View>
-    </React.Fragment>
-  );
-  renderBarcodeiOS = ({ bounds, data }) => (
-    <React.Fragment key={data + bounds.origin.x}>
-      <View
-        style={{
-          borderWidth: 2,
-          borderRadius: 10,
-          position: 'absolute',
-          borderColor: '#F00',
-          justifyContent: 'center',
-          backgroundColor: 'rgba(255, 255, 255, 0.9)',
-          padding: 10,
-          ...bounds.size,
-          left: bounds.origin.x,
-          top: bounds.origin.y,
-        }}
-      >
-        <Text style={{
-          color: '#F00',
-          flex: 1,
-          position: 'absolute',
-          textAlign: 'center',
-          backgroundColor: 'transparent',
-        }}>{data}</Text>
-      </View>
-    </React.Fragment>
-  );
 }
 
 const styles = StyleSheet.create({
@@ -146,3 +90,5 @@ const styles = StyleSheet.create({
     margin: 20,
   },
 });
+
+export default Scanner;

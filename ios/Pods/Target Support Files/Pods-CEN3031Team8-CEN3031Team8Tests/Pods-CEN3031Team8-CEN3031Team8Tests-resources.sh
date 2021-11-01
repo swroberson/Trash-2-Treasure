@@ -97,6 +97,7 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/React-Core-60309c9c/AccessibilityResources.bundle"
   install_resource "${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"
   install_resource "${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"
@@ -116,6 +117,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/React-Core-60309c9c/AccessibilityResources.bundle"
   install_resource "${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"
   install_resource "${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"
