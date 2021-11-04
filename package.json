@@ -16,6 +16,8 @@
     "@react-navigation/native-stack": "^6.2.5",
     "react": "17.0.2",
     "react-native": "0.65.1",
+    "react-native-barcode-mask": "^1.2.4",
+    "react-native-camera": "^4.2.1",
     "react-native-elements": "^3.4.2",
     "react-native-geolocation-service": "^5.3.0-beta.3",
     "react-native-gesture-handler": "^1.10.3",
@@ -53,7 +55,7 @@
       "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/fileMocks.js"
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!(@react-native|react-native|react-native-vector-icons|react-native-elements|react-native-size-matters|react-native-ratings|react-native-maps|react-native-get-location)/)"
+      "node_modules/(?!(@react-native|react-native|react-native-vector-icons|react-native-elements|react-native-size-matters|react-native-ratings|react-native-maps|react-native-get-location|react-native-camera|react-native-barcode-mask)/)"
     ]
   }
 }

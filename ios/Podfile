@@ -29,3 +29,6 @@ target 'CEN3031Team8' do
     react_native_post_install(installer)
   end
 end
+pod 'react-native-camera', path: '../node_modules/react-native-camera', subspecs: [
+  'BarcodeDetectorMLKit'
+]
