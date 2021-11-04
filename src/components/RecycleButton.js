@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-
 export default class RecycleButton extends React.Component {
     render() {
         return (
@@ -20,6 +19,8 @@ const styles = StyleSheet.create({
     recycleButton: {
         width: 150,
         height: 150,
-        alignSelf: 'center',
+        paddingLeft: '50%',
+        paddingTop: '90%',
+        alignItems: 'center'
     }
 });
