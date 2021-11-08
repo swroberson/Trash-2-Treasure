@@ -16,11 +16,13 @@ const HomeScreen = ({navigation}) => {
   const [password, setPassword] = useState("");
   const { user, signUp, signIn } = useAuth();
   var loginVisible = (user == null);
-  useEffect(() => {
-    if (user != null) {
-      navigation.navigate("UserScreen");
-    }
-  }, [user]);
+  
+  // if user is logged in then nav to user screen
+  // useEffect(() => {
+  //   if (user != null) {
+  //     navigation.navigate("UserScreen");
+  //   }
+  // }, [user]);
 
   // The onPressSignIn method calls AuthProvider.signIn with the
   // email/password in state.

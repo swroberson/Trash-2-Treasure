@@ -75,10 +75,34 @@ PODS:
     - GCDWebServer/Core (= 3.5.4)
   - GCDWebServer/Core (3.5.4)
   - glog (0.3.5)
+  - Google-Maps-iOS-Utils (3.10.3):
+    - Google-Maps-iOS-Utils/Clustering (= 3.10.3)
+    - Google-Maps-iOS-Utils/Geometry (= 3.10.3)
+    - Google-Maps-iOS-Utils/GeometryUtils (= 3.10.3)
+    - Google-Maps-iOS-Utils/Heatmap (= 3.10.3)
+    - Google-Maps-iOS-Utils/QuadTree (= 3.10.3)
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Clustering (3.10.3):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Geometry (3.10.3):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/GeometryUtils (3.10.3):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Heatmap (3.10.3):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/QuadTree (3.10.3):
+    - GoogleMaps
   - GoogleDataTransport (9.1.2):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleMaps (5.1.0):
+    - GoogleMaps/Maps (= 5.1.0)
+  - GoogleMaps/Base (5.1.0)
+  - GoogleMaps/Maps (5.1.0):
+    - GoogleMaps/Base
   - GoogleMLKit/BarcodeScanning (2.4.0):
     - GoogleMLKit/MLKitCore
     - MLKitBarcodeScanning (~> 1.5.0)
@@ -344,6 +368,10 @@ PODS:
     - React-Core
   - react-native-geolocation-service (5.3.0-beta.3):
     - React
+  - react-native-google-maps (0.29.3):
+    - Google-Maps-iOS-Utils (= 3.10.3)
+    - GoogleMaps (= 5.1.0)
+    - React-Core
   - react-native-maps (0.29.3):
     - React-Core
   - react-native-safe-area-context (3.3.2):
@@ -499,6 +527,7 @@ DEPENDENCIES:
   - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-camera/BarcodeDetectorMLKit (from `../node_modules/react-native-camera`)
   - react-native-geolocation-service (from `../node_modules/react-native-geolocation-service`)
+  - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -536,7 +565,9 @@ SPEC REPOS:
     - FlipperKit
     - fmt
     - GCDWebServer
+    - Google-Maps-iOS-Utils
     - GoogleDataTransport
+    - GoogleMaps
     - GoogleMLKit
     - GoogleToolboxForMac
     - GoogleUtilities
@@ -588,6 +619,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-camera"
   react-native-geolocation-service:
     :path: "../node_modules/react-native-geolocation-service"
+  react-native-google-maps:
+    :path: "../node_modules/react-native-maps"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
@@ -649,7 +682,9 @@ SPEC CHECKSUMS:
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   glog: 5337263514dd6f09803962437687240c5dc39aa4
+  Google-Maps-iOS-Utils: 95d5ca4d2004314eff88c1819b969db6cac37ab6
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
+  GoogleMaps: 086ae1dab659eaa7339bdb30fc88e2f44e7c597c
   GoogleMLKit: db5007bddb78dedf52b60f4038d32e7bd006b519
   GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
   GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
@@ -677,6 +712,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 41e58e5b8e3e0bf061fdf725b03f2144014a8fb0
   react-native-camera: 3eae183c1d111103963f3dd913b65d01aef8110f
   react-native-geolocation-service: 32e50a2e4e4518b51b829fdfe137562a672d95d2
+  react-native-google-maps: c3c9e5e1e0eefabb9c5da32dc6461c0a8b266eef
   react-native-maps: 41d01d8e0afcebe32bec9eea3bd945adc1b18f7a
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
@@ -700,6 +736,6 @@ SPEC CHECKSUMS:
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 0dbf96ff4d2522841dd992c96dbb618b7c3041cd
+PODFILE CHECKSUM: 5cd554a68a994181bf51d22ab51d3f127ff567d5
 
 COCOAPODS: 1.11.2
