@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { Text, SafeAreaView, StyleSheet, View, TextInput } from "react-native";
-import { Button, Overlay } from "react-native-elements";
-import { useAuth } from "../AuthProvider";
 
 import { Dimensions } from 'react-native';
 import RecycleButton from '../components/RecycleButton';
@@ -12,70 +10,8 @@ import AndroidMap from '../components/AndroidMap';
 Icon.loadFont();
 
 const HomeScreen = ({navigation}) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { user, signUp, signIn } = useAuth();
-  var loginVisible = (user == null);
-  
-  // if user is logged in then nav to user screen
-  // useEffect(() => {
-  //   if (user != null) {
-  //     navigation.navigate("UserScreen");
-  //   }
-  // }, [user]);
-
-  // The onPressSignIn method calls AuthProvider.signIn with the
-  // email/password in state.
-  const onPressSignIn = async () => {
-    console.log("Press sign in");
-    try {
-      await signIn(email, password);
-    } catch (error) {
-      Alert.alert(`Failed to sign in: ${error.message}`);
-    }
-  };
-
-  // The onPressSignUp method calls AuthProvider.signUp with the
-  // email/password in state and then signs in.
-  const onPressSignUp = async () => {
-    try {
-      await signUp(email, password);
-      signIn(email, password);
-    } catch (error) {
-      Alert.alert(`Failed to sign up: ${error.message}`);
-    }
-  };
-
     return (
       <SafeAreaView>
-      <Overlay 
-          overlayStyle={{ width: "90%" }}
-          isVisible={loginVisible}
-        >
-        <View>
-        <Text>Sign Up or Sign In:</Text>
-        <View style={styles.inputContainer}>
-            <TextInput
-            onChangeText={setEmail}
-            value={email}
-            placeholder="email"
-            style={styles.inputStyle}
-            autoCapitalize="none"
-            />
-        </View>
-        <View style={styles.inputContainer}>
-            <TextInput
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-            placeholder="password"
-            style={styles.inputStyle}
-            secureTextEntry
-            />
-        </View>
-        <Button onPress={onPressSignIn} title="Sign In" />
-        <Button onPress={onPressSignUp} title="Sign Up" />
-        </View>
-        </Overlay>
         <View style={{flexDirection:"row", justifyContent: 'space-between'}}>
           <View style={styles.user}>
             <Icon name="person-circle-outline"
