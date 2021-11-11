@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View} from "react-native";
 import { Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import AndroidMap from '../components/AndroidMap';
 
 Icon.loadFont();
 
@@ -14,8 +15,8 @@ const MapScreen = ({navigation}) => {
               size={50}
             />
         </View>
-        <View style={styles.txt}>
-          <Text>Find a Recycling Point</Text>
+        <View>
+          <AndroidMap />
         </View>
       </SafeAreaView> 
     );

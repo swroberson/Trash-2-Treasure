@@ -19,7 +19,7 @@ function _onPressButton() {
 export default class RecycleButton extends React.Component {
     render() {
         return (
-             <TouchableOpacity style={styles.buttonTouch} onPress={_onPressButton}>
+             <TouchableOpacity style={styles.buttonTouch} onPress={_onPressButton()}>
                 <View style={styles.button}>
                   <Image
                     source={require('../images/recycleButton.png')}

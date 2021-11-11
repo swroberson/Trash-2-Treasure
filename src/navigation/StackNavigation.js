@@ -13,8 +13,8 @@ const Stack = createNativeStackNavigator();
 const StackNavigation = () => {
     return (
         <Stack.Navigator screenOptions={{
-    headerShown: false
-  }}>
+        headerShown: false
+        }}>
             <Stack.Screen
                 name="LoginScreen"
                 component={LoginScreen}
@@ -44,7 +44,7 @@ const StackNavigation = () => {
                 name="UserScreen"
                 component={UserScreen}
                 options={{ title: 'View Profile'}}
-            />
+            />     
         </Stack.Navigator>
     )
 }
