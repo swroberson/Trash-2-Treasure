@@ -6,14 +6,20 @@ import MapOrLeaderboardScreen from '../screens/MapOrLeaderboardScreen'
 import MapScreen from '../screens/MapScreen';
 import LeaderboardScreen from '../screens/LeaderboardScreen';
 import UserScreen from '../screens/UserScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const Stack = createNativeStackNavigator();
 
 const StackNavigation = () => {
     return (
         <Stack.Navigator screenOptions={{
-    headerShown: false
-  }}>
+        headerShown: false
+        }}>
+            <Stack.Screen
+                name="LoginScreen"
+                component={LoginScreen}
+                options={{ title: 'Login' }}
+            />
             <Stack.Screen
                 name="HomeStack"
                 component={TabNavigation}
@@ -38,7 +44,7 @@ const StackNavigation = () => {
                 name="UserScreen"
                 component={UserScreen}
                 options={{ title: 'View Profile'}}
-            />
+            />     
         </Stack.Navigator>
     )
 }
