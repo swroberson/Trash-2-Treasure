@@ -7,6 +7,7 @@ import MapScreen from '../screens/MapScreen';
 import LeaderboardScreen from '../screens/LeaderboardScreen';
 import UserScreen from '../screens/UserScreen';
 import LoginScreen from '../screens/LoginScreen';
+import RecylingInfoScreen from '../screens/RecyclingInfo';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +40,11 @@ const StackNavigation = () => {
                 name="LeaderboardScreen"
                 component={LeaderboardScreen}
                 options={{ title: 'View Leaderboard'}}
+            />
+            <Stack.Screen
+                name="RecylingInfoScreen"
+                component={RecylingInfoScreen}
+                options={{ title: 'Recycling Information'}}
             />
             <Stack.Screen
                 name="UserScreen"

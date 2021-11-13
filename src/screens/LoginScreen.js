@@ -10,12 +10,12 @@ import { useAuth } from "../AuthProvider";
     const { user, signUp, signIn } = useAuth();
     var loginVisible = (user == null);
     
-    // if user is logged in then nav to user screen
-    // useEffect(() => {
-    //   if (user != null) {
-    //     navigation.navigate("UserScreen");
-    //   }
-    // }, [user]);
+    // if user is logged in then nav to the home screen
+     useEffect(() => {
+       if (user != null) {
+         navigation.navigate("HomeStack");
+       }
+     }, [user]);
   
     // The onPressSignIn method calls AuthProvider.signIn with the
     // email/password in state.
@@ -38,10 +38,6 @@ import { useAuth } from "../AuthProvider";
         Alert.alert(`Failed to sign up: ${error.message}`);
       }
     };
-
-    if (!loginVisible) {
-        navigation.navigate('HomeStack')
-    }
 
     return (
       <SafeAreaView>
