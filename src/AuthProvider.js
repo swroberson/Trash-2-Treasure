@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
   }, [user]);
   
   const awardPoints = async (value) => {
-    await app.awardPoints(value);
+    await user.functions["addPoints"](value);
   }
 
   // The signIn function takes an email and password and uses the
