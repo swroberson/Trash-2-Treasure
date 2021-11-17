@@ -14,21 +14,40 @@ const AuthContext = React.createContext(null);
 // use the useAuth() hook to access the auth value.
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(app.currentUser);
-  const [points, setPoints] = useState(app.currentUser);
   const realmRef = useRef(null);
+  const [username, setUsername] = useState();
+  const [points, setPoints] = useState();
 
   useEffect(() => {
     if (!user) {
       return;
     }
-
+  
     const config = {
       sync: {
         user,
         partitionValue: `user=${user.id}`,
-        points,
       },
     };
+
+    // Open a realm with the logged in user's partition value in order
+    // to get the projects that the logged in user is a member of
+    Realm.open(config).then((userRealm) => {
+      realmRef.current = userRealm;
+      const users = userRealm.objects("user");
+
+      // if user has not been loaded serverside, temporarily use generic values
+      users.addListener(() => {
+        if (users.isEmpty()) {
+          setUsername("User");
+          setPoints(0);
+        }
+        else {
+          setUsername(users[0].name);
+          setPoints(users[0].points);
+        }
+      })
+    });
 
     return () => {
       // cleanup function
@@ -41,9 +60,7 @@ const AuthProvider = ({ children }) => {
   }, [user]);
   
   const awardPoints = async (value) => {
-    userRealm.write(() => {
-      user.points += value;
-    });
+    await user.functions["addPoints"](value);
   }
 
   // The signIn function takes an email and password and uses the
@@ -77,7 +94,9 @@ const AuthProvider = ({ children }) => {
         signUp,
         signIn,
         signOut,
+        awardPoints,
         user,
+        username,
         points
       }}
     >

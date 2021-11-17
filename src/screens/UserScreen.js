@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View, Dimensions, Alert} from "react-native";
 import { Button } from "react-native-elements";
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useAuth, signOut } from "../AuthProvider";
+import { useAuth } from "../AuthProvider";
 
 Icon.loadFont();
 
 const UserScreen = ({navigation}) => {
   const { signOut } = useAuth();
-
+  const { user, username, points } = useAuth();
   return (
     <SafeAreaView>
         <View style={styles.menu}>
@@ -18,7 +18,7 @@ const UserScreen = ({navigation}) => {
             />
         </View>
         <View style={styles.txt}>
-          <Text>User Profile Info</Text>
+          <Text> {username}'s points: {points}</Text>
         </View>
         <Button
           title="Log Out"
