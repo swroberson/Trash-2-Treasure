@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { Text, SafeAreaView, StyleSheet, View, TextInput } from "react-native";
+import { Text, SafeAreaView, StyleSheet, View, TextInput, Image, ImageBackground } from "react-native";
 
 import { Dimensions } from 'react-native';
 import RecycleButton from '../components/RecycleButton';
@@ -27,10 +27,24 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
         <View>
-          <AndroidMap></AndroidMap>
-          <RecycleButton></RecycleButton>
+          <Image
+          source={require('../images/title.png')}
+          style={styles.title}
+          />
+        </View>
+        <View>
+          <Image
+          source={require('../images/campus.jpg')}
+          style={styles.campus}
+          />
+        </View>
+        <View style={styles.recycler}>
+          <RecycleButton />
         </View>
         <View style={styles.txt}>
+        </View>
+        <View>
+          <Text style={styles.recycleInfo}> Tap to Recycle! </Text>
         </View>
       </SafeAreaView> 
     );
@@ -66,11 +80,27 @@ const styles = StyleSheet.create({
       borderRadius: 2,
     },
     recycler: {
-      paddingTop: '85%',
+      paddingTop: '10%',
     },
     container: {
     	flex: 1,
-    	alignItems: "center"
-    }
+    	alignItems: "center",
+    },
+    title: {
+      marginTop: 50,
+      height: 60,
+      width: 500,
+      alignSelf: "center",
+    },
+    campus: {
+      marginTop: 15,
+      height: 200,
+      width: '100%',
+    },
+    recycleInfo: {
+      marginTop: 20,
+      textAlign: 'center',
+      fontWeight: 'bold',
+    },
 });
   export default HomeScreen;
