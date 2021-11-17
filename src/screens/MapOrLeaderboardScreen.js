@@ -29,6 +29,13 @@ const MapOrLeaderboardScreen = ({navigation}) => {
                 navigation.navigate('MapScreen')}
           />
           </View>
+          <View style={styles.btn}>
+          <Button
+              title = "Recycling Information"
+              onPress={() =>
+                navigation.navigate('RecylingInfoScreen')}
+          />
+          </View>
         </View>
       </SafeAreaView> 
     );
