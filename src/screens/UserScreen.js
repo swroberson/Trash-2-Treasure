@@ -28,8 +28,8 @@ const UserScreen = ({navigation}) => {
                 text: "Yes, Log Out",
                 style: "destructive",
                 onPress: () => {
-                  signOut();
                   navigation.popToTop();
+                  signOut();
                 },
               },
               { text: "Cancel", style: "cancel" },
