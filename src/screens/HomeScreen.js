@@ -1,15 +1,106 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { Text, SafeAreaView, StyleSheet, View, TextInput, Image, ImageBackground } from "react-native";
+import { Text, SafeAreaView, StyleSheet, View, TextInput, TouchableOpacity, Image, ImageBackground } from "react-native";
 
 import { Dimensions } from 'react-native';
-import RecycleButton from '../components/RecycleButton';
+//import RecycleButton from '../components/RecycleButton';
 import AndroidMap from '../components/AndroidMap';
+
+
+import GetLocation from 'react-native-get-location'
+
+/*function _onPressButton() {    
+  console.warn(null, "_onPressButton called");
+  GetLocation.getCurrentPosition({
+      enableHighAccuracy: true,
+      timeout: 15000,
+  })
+  .then(location => {
+      if(Math.abs(location.latitude - 29.6504) > 0.00045 || Math.abs(location.longitude - -82.3494) > 0.00045) {
+      alert("Your current location\n" + "latitude: " + location.latitude
+      + "\n" + "longitude: "+ location.longitude
+      + "\nYou are not within 50 meters of a recycling station!")
+      console.warn(null, "In IF");
+        testVariable = false;
+      }
+      else {
+        console.warn(null, "In Else");
+        testVariable = true;
+      }
+  })
+  .catch(error => {
+    console.warn(null, "In Catch");
+  })
+
+  console.warn(null, "out of if-else/catch");
+
+  //testVariable = true;
+
+}*/
 
 Icon.loadFont();
 
 const HomeScreen = ({navigation}) => {
+
+  var testVariable = _onPressButton()
+  console.log("testVariable: " + testVariable)
+
+  /*useEffect(() => {
+    _onPressButton()
+  }, [testVariable]);*/
+
+  function _onPressButton() {    
+    GetLocation.getCurrentPosition({
+        enableHighAccuracy: true,
+        timeout: 150,
+    })
+    .then(location => {
+      console.log("Your current location\n" + "latitude: " + location.latitude
+      + "\n" + "longitude: "+ location.longitude)
+        if(Math.abs(location.latitude - 29.6504) > 0.00045 || Math.abs(location.longitude - -82.3494) > 0.00045) {
+        alert("Your current location\n" + "latitude: " + location.latitude
+        + "\n" + "longitude: "+ location.longitude
+        + "\nYou are not within 50 meters of a recycling station!")
+          //testVariable = true
+          return true
+          console.log("in if: " + testVariable)
+        }
+        else {
+          //testVariable = false
+          return false
+          console.log("in else: " + testVariable)
+        }
+    })
+    .catch(error => {
+      //testVariable = true
+      console.log("in catch")
+      return true
+    })
+  
+    console.log("testVariable: " + testVariable)
+    //testVariable = true;
+
+    //return testVariable
+  }
+
+  /*useEffect(() => {
+    if (testVariable == true) {
+      console.warn(null, "testVariable = true");
+      testVariable = false
+      navigation.navigate("Scan");
+    }
+
+    <TouchableOpacity style={styles.buttonTouch} disabled={testVariable} onPress={navigation.navigate('Scan')}>
+                <View style={styles.button}>
+                  <Image
+                    source={require('../images/recycleButton.png')}
+                    style={styles.button} />
+                </View>
+             </TouchableOpacity>
+
+  });*/
+
     return (
       <SafeAreaView>
         <View style={{flexDirection:"row", justifyContent: 'space-between'}}>
@@ -39,7 +130,16 @@ const HomeScreen = ({navigation}) => {
           />
         </View>
         <View style={styles.recycler}>
-          <RecycleButton />
+              <TouchableOpacity
+              style={styles.buttonTouch}
+              disabled={testVariable === false}
+              onPress={() => navigation.navigate('Scan')}>
+                <View style={styles.button}>
+                  <Image
+                    source={require('../images/recycleButton.png')}
+                    style={styles.button} />
+                </View>
+             </TouchableOpacity>
         </View>
         <View style={styles.txt}>
         </View>
@@ -50,7 +150,7 @@ const HomeScreen = ({navigation}) => {
     );
   };
 
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
     menu:{
       paddingTop: 0,
       paddingRight: 10,
@@ -102,5 +202,15 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontWeight: 'bold',
     },
+    buttonTouch: {
+      width: 100,
+      height: 100,
+      alignSelf: 'center',
+    },
+    button: {
+      width: 100,
+      height: 100,
+      alignSelf: 'center',
+  },
 });
   export default HomeScreen;

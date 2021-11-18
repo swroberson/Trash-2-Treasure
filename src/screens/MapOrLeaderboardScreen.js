@@ -10,7 +10,7 @@ const MapOrLeaderboardScreen = ({navigation}) => {
       <SafeAreaView>
         <View style={styles.menu}>
           <Icon name="close-outline"
-              onPress={() => navigation.navigate('HomeStack')}
+              onPress={() => navigation.navigate('Home')}
               size={50}
             />
         </View>

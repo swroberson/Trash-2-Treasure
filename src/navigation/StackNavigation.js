@@ -1,12 +1,13 @@
 import 'react-native-gesture-handler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import TabNavigation from './TabNavigation'
 import MapOrLeaderboardScreen from '../screens/MapOrLeaderboardScreen'
 import MapScreen from '../screens/MapScreen';
 import LeaderboardScreen from '../screens/LeaderboardScreen';
 import UserScreen from '../screens/UserScreen';
 import LoginScreen from '../screens/LoginScreen';
+import HomeScreen from '../screens/HomeScreen'
+import ScanScreen from '../screens/ScanScreen'
 import RecylingInfoScreen from '../screens/RecyclingInfo';
 
 const Stack = createNativeStackNavigator();
@@ -22,8 +23,8 @@ const StackNavigation = () => {
                 options={{ title: 'Login' }}
             />
             <Stack.Screen
-                name="HomeStack"
-                component={TabNavigation}
+                name="Home"
+                component={HomeScreen}
                 options={{ title: 'Home' }}
             />
             <Stack.Screen
@@ -50,7 +51,12 @@ const StackNavigation = () => {
                 name="UserScreen"
                 component={UserScreen}
                 options={{ title: 'View Profile'}}
-            />     
+            />
+            <Stack.Screen
+                name="Scan"
+                component={ScanScreen}
+                options={{ title: 'Scan Barcodes' }}
+            /> 
         </Stack.Navigator>
     )
 }
