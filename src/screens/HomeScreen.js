@@ -1,105 +1,33 @@
 import React, { useEffect } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-
 import { Text, SafeAreaView, StyleSheet, View, TextInput, TouchableOpacity, Image, ImageBackground } from "react-native";
-
 import { Dimensions } from 'react-native';
-//import RecycleButton from '../components/RecycleButton';
-import AndroidMap from '../components/AndroidMap';
-
-
 import GetLocation from 'react-native-get-location'
-
-/*function _onPressButton() {    
-  console.warn(null, "_onPressButton called");
-  GetLocation.getCurrentPosition({
-      enableHighAccuracy: true,
-      timeout: 15000,
-  })
-  .then(location => {
-      if(Math.abs(location.latitude - 29.6504) > 0.00045 || Math.abs(location.longitude - -82.3494) > 0.00045) {
-      alert("Your current location\n" + "latitude: " + location.latitude
-      + "\n" + "longitude: "+ location.longitude
-      + "\nYou are not within 50 meters of a recycling station!")
-      console.warn(null, "In IF");
-        testVariable = false;
-      }
-      else {
-        console.warn(null, "In Else");
-        testVariable = true;
-      }
-  })
-  .catch(error => {
-    console.warn(null, "In Catch");
-  })
-
-  console.warn(null, "out of if-else/catch");
-
-  //testVariable = true;
-
-}*/
 
 Icon.loadFont();
 
 const HomeScreen = ({navigation}) => {
 
-  var testVariable = _onPressButton()
-  console.log("testVariable: " + testVariable)
-
-  /*useEffect(() => {
-    _onPressButton()
-  }, [testVariable]);*/
-
-  function _onPressButton() {    
+  function _onPressButton() {
     GetLocation.getCurrentPosition({
         enableHighAccuracy: true,
-        timeout: 150,
+        timeout: 15000,
     })
     .then(location => {
-      console.log("Your current location\n" + "latitude: " + location.latitude
-      + "\n" + "longitude: "+ location.longitude)
         if(Math.abs(location.latitude - 29.6504) > 0.00045 || Math.abs(location.longitude - -82.3494) > 0.00045) {
         alert("Your current location\n" + "latitude: " + location.latitude
         + "\n" + "longitude: "+ location.longitude
         + "\nYou are not within 50 meters of a recycling station!")
-          //testVariable = true
-          return true
-          console.log("in if: " + testVariable)
         }
         else {
-          //testVariable = false
-          return false
-          console.log("in else: " + testVariable)
+          navigation.navigate('Scan')
         }
     })
     .catch(error => {
-      //testVariable = true
-      console.log("in catch")
-      return true
+      const { code, message } = error;
+      console.warn(code, message);
     })
-  
-    console.log("testVariable: " + testVariable)
-    //testVariable = true;
-
-    //return testVariable
   }
-
-  /*useEffect(() => {
-    if (testVariable == true) {
-      console.warn(null, "testVariable = true");
-      testVariable = false
-      navigation.navigate("Scan");
-    }
-
-    <TouchableOpacity style={styles.buttonTouch} disabled={testVariable} onPress={navigation.navigate('Scan')}>
-                <View style={styles.button}>
-                  <Image
-                    source={require('../images/recycleButton.png')}
-                    style={styles.button} />
-                </View>
-             </TouchableOpacity>
-
-  });*/
 
     return (
       <SafeAreaView>
@@ -132,8 +60,8 @@ const HomeScreen = ({navigation}) => {
         <View style={styles.recycler}>
               <TouchableOpacity
               style={styles.buttonTouch}
-              disabled={testVariable === false}
-              onPress={() => navigation.navigate('Scan')}>
+              //disabled={_onPressButton()}
+              onPress={() => _onPressButton()}>
                 <View style={styles.button}>
                   <Image
                     source={require('../images/recycleButton.png')}
