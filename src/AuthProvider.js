@@ -99,6 +99,7 @@ const AuthProvider = ({ children }) => {
         signIn,
         signOut,
         awardPoints,
+        getLeaderboard,
         user,
         username,
         points
