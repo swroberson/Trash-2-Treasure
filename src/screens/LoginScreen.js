@@ -13,7 +13,7 @@ import { useAuth } from "../AuthProvider";
     // if user is logged in then nav to the home screen
      useEffect(() => {
        if (user != null) {
-         navigation.navigate("HomeStack");
+         navigation.navigate("Home");
        }
      }, [user]);
   

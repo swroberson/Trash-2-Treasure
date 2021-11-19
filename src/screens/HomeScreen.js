@@ -1,15 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-
-import { Text, SafeAreaView, StyleSheet, View, TextInput, Image, ImageBackground } from "react-native";
-
+import { Text, SafeAreaView, StyleSheet, View, TextInput, TouchableOpacity, Image, ImageBackground } from "react-native";
 import { Dimensions } from 'react-native';
-import RecycleButton from '../components/RecycleButton';
-import AndroidMap from '../components/AndroidMap';
+import GetLocation from 'react-native-get-location'
 
 Icon.loadFont();
 
 const HomeScreen = ({navigation}) => {
+
+  function _onPressButton() {
+    GetLocation.getCurrentPosition({
+        enableHighAccuracy: true,
+        timeout: 15000,
+    })
+    .then(location => {
+        if(Math.abs(location.latitude - 29.6504) > 0.00045 || Math.abs(location.longitude - -82.3494) > 0.00045) {
+        alert("Your current location\n" + "latitude: " + location.latitude
+        + "\n" + "longitude: "+ location.longitude
+        + "\nYou are not within 50 meters of a recycling station!")
+        }
+        else {
+          navigation.navigate('Scan')
+        }
+    })
+    .catch(error => {
+      const { code, message } = error;
+      console.warn(code, message);
+    })
+  }
+
     return (
       <SafeAreaView>
         <View style={{flexDirection:"row", justifyContent: 'space-between'}}>
@@ -39,7 +58,16 @@ const HomeScreen = ({navigation}) => {
           />
         </View>
         <View style={styles.recycler}>
-          <RecycleButton />
+              <TouchableOpacity
+              style={styles.buttonTouch}
+              //disabled={_onPressButton()}
+              onPress={() => _onPressButton()}>
+                <View style={styles.button}>
+                  <Image
+                    source={require('../images/recycleButton.png')}
+                    style={styles.button} />
+                </View>
+             </TouchableOpacity>
         </View>
         <View style={styles.txt}>
         </View>
@@ -50,7 +78,7 @@ const HomeScreen = ({navigation}) => {
     );
   };
 
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
     menu:{
       paddingTop: 0,
       paddingRight: 10,
@@ -102,5 +130,15 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontWeight: 'bold',
     },
+    buttonTouch: {
+      width: 100,
+      height: 100,
+      alignSelf: 'center',
+    },
+    button: {
+      width: 100,
+      height: 100,
+      alignSelf: 'center',
+  },
 });
   export default HomeScreen;
