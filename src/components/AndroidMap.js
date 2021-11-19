@@ -1,71 +1,106 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, Image, Text, Button } from 'react-native';
+import { SafeAreaView, View, StyleSheet, Image, Text, Button, TouchableOpacity } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker, Circle, Callout } from 'react-native-maps';
 import GetLocation from 'react-native-get-location'
 
-export default class AndroidMap extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            latitude: 0,
-            longitude: 0,
-            error: null
-        }
-    }
+function _onPressButton() {
+    _requestLocation();
+}
 
-    componentDidMount() {
-        this._requestLocation();
+export default class AndroidMap extends React.Component {
+    state = {
+            latitude: 29.6447,
+            longitude: -82.3434,
+            error: null,
     }
 
     _requestLocation = () => {
-        this.setState({ loading: true, location: null });
+        this.setState({ loading: true });
 
         GetLocation.getCurrentPosition({
             enableHighAccuracy: true,
             timeout: 150000,
         })
-        .then(location => {
-            this.setState({
-                location,
-                loading: false,
+            .then(location => {
+                this.setState({
+                    latitude: location.latitude,
+                    longitude: location.longitude,
+                    loading: false,
+                });
+            })
+            .catch(ex => {
+                const { code, message } = ex;
+                console.warn(code, message);
+                if (code === 'CANCELLED') {
+                    Alert.alert('Location cancelled by user or by another request');
+                }
+                if (code === 'UNAVAILABLE') {
+                    Alert.alert('Location service is disabled or unavailable');
+                }
+                if (code === 'TIMEOUT') {
+                    Alert.alert('Location request timed out');
+                }
+                if (code === 'UNAUTHORIZED') {
+                    Alert.alert('Authorization denied');
+                }
+                this.setState({
+                    latitude: null,
+                    longitude: null,
+                    loading: false,
+                });
             });
-            alert("Your current location\n" + "latitude: " + location.latitude
-            + "\n" + "longitude: "+ location.longitude)
-        })
-        .catch(ex => {
-            const { code, message } = ex;
-            console.warn(code, message);
-            if (code === 'CANCELLED') {
-                Alert.alert('Location cancelled by user or by another request');
-            }
-            if (code === 'UNAVAILABLE') {
-                Alert.alert('Location service is disabled or unavailable');
-            }
-            if (code === 'TIMEOUT') {
-                Alert.alert('Location request timed out');
-            }
-            if (code === 'UNAUTHORIZED') {
-                Alert.alert('Authorization denied');
-            }
-            this.setState({
-                location: null,
-                loading: false,
-            });
-        });
     }
+
+    _findNearest = () => {
+    var arr = [0, 0, 0, 0, 0, 0];
+    arr[0] = Math.sqrt(Math.pow((this.state.latitude - coordinates[0].latitude), 2) + Math.pow((this.state.longitude - coordinates[0].longitude), 2));
+    arr[1] = Math.sqrt(Math.pow((this.state.latitude - coordinates[1].latitude), 2) + Math.pow((this.state.longitude - coordinates[1].longitude), 2));
+    arr[2] = Math.sqrt(Math.pow((this.state.latitude - coordinates[2].latitude), 2) + Math.pow((this.state.longitude - coordinates[2].longitude), 2));
+    arr[3] = Math.sqrt(Math.pow((this.state.latitude - coordinates[3].latitude), 2) + Math.pow((this.state.longitude - coordinates[3].longitude), 2));
+    arr[4] = Math.sqrt(Math.pow((this.state.latitude - coordinates[4].latitude), 2) + Math.pow((this.state.longitude - coordinates[4].longitude), 2));
+    arr[5] = Math.sqrt(Math.pow((this.state.latitude - coordinates[5].latitude), 2) + Math.pow((this.state.longitude - coordinates[5].longitude), 2));
+    var smallest = arr[0];
+    var index = 0;
+    for(var i=1; i < arr.length; i++) {
+        if(arr[i] < smallest) {
+            smallest = arr[i];
+            index = i;
+        }
+    }
+    alert('The closest recycling station is:\n' + coordinates[index].name + '\n' +
+        coordinates[index].address
+        )
+    }
+
     render() {
-    const { location, loading } = this.state;
+        const { latitude, longitude, loading } = this.state;
         return (
           <SafeAreaView style={styles.container}>
+          <TouchableOpacity disabled={this.state.loading} style={styles.button} onPress={this._requestLocation}>
+            <Image
+              source={require('../images/location.png')}
+              style={styles.image} />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button2} onPress={this._findNearest}>
+            <Image
+              source={require('../images/arrow.png')}
+              style={styles.image} />
+          </TouchableOpacity>
           <MapView
             provider={PROVIDER_GOOGLE}
             style={styles.map}
             customMapStyle={mapNightStyle}
             region={{
-              latitude: 29.642,
-              longitude: -82.347,
+              latitude: 29.647,
+              longitude: -82.348,
               latitudeDelta: 0.01,
               longitudeDelta: 0.02}}>
+
+              <Marker
+                coordinate = {{latitude: this.state.latitude - .000005, longitude: this.state.longitude}}
+                image={require('../images/dot.png')}
+                title={'Current location'}></Marker>
 
               <Marker
                 coordinate = {{latitude: 29.6501, longitude: -82.3501}}
@@ -162,11 +197,6 @@ export default class AndroidMap extends React.Component {
                     </View>
                 </Callout>
               </Marker>
-
-              <Circle
-                center={{latitude: 29.6501, longitude: -82.3501}}
-                radius={50}
-                fillColor={'#A38200'}></Circle>
           </MapView>
           </SafeAreaView>
         );
@@ -183,54 +213,71 @@ const styles = StyleSheet.create({
   },
   container: {
        ...StyleSheet.absoluteFillObject,
-            height: 1000,
+            height: 675,
             width: '100%',
             alignSelf: 'center',
-    },
-    bubble: {
-      flexDirection: 'column',
-      alignSelf: 'flex-start',
-      backgroundColor: '#fff',
-      borderRadius: 6,
-      borderColor: '#ccc',
-      borderWidth: 0.5,
-      padding: 20,
-      width: 150,
-    },
-    arrow: {
-      backgroundColor: 'transparent',
-      borderColor: 'transparent',
-      borderTopColor: '#fff',
-      borderWidth: 16,
+  },
+  bubble: {
+    flexDirection: 'column',
+    alignSelf: 'flex-start',
+    backgroundColor: '#fff',
+    borderRadius: 6,
+    borderColor: '#ccc',
+    borderWidth: 0.5,
+    padding: 20,
+    width: 150,
+  },
+  arrow: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderTopColor: '#fff',
+    borderWidth: 16,
+    alignSelf: 'center',
+    marginTop: -32,
+  },
+  arrowBorder: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderTopColor: '#007a87',
+    borderWidth: 16,
+    alignSelf: 'center',
+    marginTop: -0.5,
+    //marginBottom: -15,
+   },
+  name: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  image: {
+      width: 130,
+      height: 130,
       alignSelf: 'center',
-      marginTop: -32,
-    },
-    arrowBorder: {
-      backgroundColor: 'transparent',
-      borderColor: 'transparent',
-      borderTopColor: '#007a87',
-      borderWidth: 16,
-      alignSelf: 'center',
-      marginTop: -0.5,
-      //marginBottom: -15,
-    },
-    name: {
-      fontSize: 16,
-      marginBottom: 5,
-    },
-    image: {
-      width: 100,
-      height: 90,
-    }
+  },
+  button: {
+      width: 105,
+      height: 105,
+      zIndex: 1,
+      top: 540,
+      alignSelf: 'flex-end',
+      position: 'absolute'
+  },
+  button2: {
+    width: 105,
+    height: 105,
+    zIndex: 1,
+    top: 460,
+    alignSelf: 'flex-end',
+    position: 'absolute'
+  },
 })
 
 const coordinates =  [
           { name: 'Ben Hill Griffin Stadium', address: '157 Gale Lemerand Dr', latitude: 29.6501, longitude: -82.3501 },
-          { name: 'Hume Hall', address: 'Museum Rd', latitude: 29.6445, longitude: -82.3515 },
-          { name: 'Reitz Student Union', address: '118 Reitz Union Drive', latitude: 29.6463, longitude: -82.3478 },
-          { name: 'Marston Science Library', address: '444 Newell Dr', latitude: 29.6481, longitude: -82.3437 },
-          { name: 'Harrell Medical Education Building', address: '1104 Newell Dr', latitude: 29.6513, longitude: -82.3402 },
-          { name: 'Warrington College of Business', address: '1384 Union Road', latitude: 29.642, longitude: -82.3445 }
+          { name: 'Hume Hall', address: 'Museum Rd', latitude: 29.6445, longitude: -82.352 },
+          { name: 'Reitz Student Union', address: '118 Reitz Union Drive', latitude: 29.6467, longitude: -82.3478 },
+          { name: 'Marston Science Library', address: '444 Newell Dr', latitude: 29.6485, longitude: -82.3439 },
+          { name: 'Harrell Medical Education Building', address: '1104 Newell Dr', latitude: 29.642, longitude: -82.3445 },
+          { name: 'Warrington College of Business', address: '1384 Union Road', latitude: 29.6510, longitude: -82.3402 }
 ];
 
 const mapNightStyle = [
