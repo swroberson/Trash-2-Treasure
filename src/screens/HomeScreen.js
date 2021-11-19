@@ -14,10 +14,10 @@ const HomeScreen = ({navigation}) => {
         timeout: 15000,
     })
     .then(location => {
-        if(Math.abs(location.latitude - 29.6504) > 0.00045 || Math.abs(location.longitude - -82.3494) > 0.00045) {
+        if(Math.abs(location.latitude - 29.6504) > 0.01 && Math.abs(location.longitude - -82.3494) > 0.01) {
         alert("Your current location\n" + "latitude: " + location.latitude
         + "\n" + "longitude: "+ location.longitude
-        + "\nYou are not within 50 meters of a recycling station!")
+        + "\nYou are not close to a recycling station!")
         }
         else {
           navigation.navigate('Scan')
