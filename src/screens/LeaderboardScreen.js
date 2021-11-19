@@ -2,10 +2,14 @@ import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View} from "react-native";
 import { Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useAuth } from '../AuthProvider';
 
 Icon.loadFont();
 
 const LeaderboardScreen = ({navigation}) => {
+  const { getLeaderboard } = useAuth();
+  let leaderboard = getLeaderboard();
+  console.log(leaderboard);
     return (
       <SafeAreaView>
         <View style={styles.menu}>
@@ -14,8 +18,8 @@ const LeaderboardScreen = ({navigation}) => {
               size={50}
             />
         </View>
-        <View style={styles.txt}>
-          <Text>Leaderboard</Text>
+        <View>
+          <Text>  </Text>
         </View>
       </SafeAreaView> 
     );
