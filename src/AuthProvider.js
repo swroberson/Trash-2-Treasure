@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import Realm from "realm";
 import { getRealmApp } from "../getRealmApp";
+import {Alert} from "react-native";
 
 // Access the Realm App.
 const app = getRealmApp();
@@ -61,6 +62,8 @@ const AuthProvider = ({ children }) => {
   
   const awardPoints = async (value) => {
     await user.functions["addPoints"](value);
+    Alert.alert("Congrats!",
+        "You just earned " + `${value}` + " points!");
   }
 
   const getLeaderboard = async () => {
