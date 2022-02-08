@@ -19,8 +19,8 @@ By depositing their recyclables at these locations, users would be awarded point
 - MongoDB Realm for React Native
 
 #### Required API Keys
-- Maps - Google Maps Platform: AIzaSyD_u-kxWvULSpY4Mw74GpkpTirRlXcFBDY. 
-- Public API Key for the MongoDB Realm Application: 6c4589c7-ca85-4cc9-805f-a4d90753ea5a.
+- Maps - Google Maps Platform: `AIzaSyD_u-kxWvULSpY4Mw74GpkpTirRlXcFBDY` 
+- Public API Key for the MongoDB Realm Application: `6c4589c7-ca85-4cc9-805f-a4d90753ea5a`
 
 ### Running the application
 - After installing the necessary dependencies, clone this github repository
