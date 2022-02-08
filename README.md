@@ -18,9 +18,8 @@
 
 ### To Run the App
 - After installing the necessary dependencies, clone this github repository
-- Open the project file in the IDE of your choice
+- Before building and running the app for the first time, open a command terminal at the project’s root directory and enter the command `npm install`
 - To start the metro server, open a command terminal at the project’s root directory and enter the command `npm start`
-- Before building and running the app for the first time, open another command terminal at the project’s root directory and enter the command `npm install`
 - If you plan on running the app on an iOS emulator, you’ll have to update the Podfile. To do this, run the command 
 	`cd ios && pod install && cd ..`
-- Launch the app on the emulator of your choice by entering the command `npx react-native run-[android/ios]`
+- Launch the app on the emulator of your choice by entering the command `npx react-native run-[android|ios]`
